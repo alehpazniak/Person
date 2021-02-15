@@ -33,11 +33,6 @@ public class ClientController {
         return clientService.findAddressesByCity(city);
     }
 
-//    @GetMapping("/popularCity")
-//    public String GetMostPopularCity() {
-//        return clientService.getMostPopularCity();
-//    }
-
     @PostMapping
     public ClientResponse addClient(@Valid @RequestBody ClientRequest clientRequest) {
         return clientService.saveClient(clientRequest);
