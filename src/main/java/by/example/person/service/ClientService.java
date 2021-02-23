@@ -58,7 +58,6 @@ public class ClientService {
         ClientEntity clientEntity = clientRepository.findById(id);
 
         clientEntity.addAddress(AddressMapper.map(addressRequest));
-//        clientRepository.save(clientEntity);   ---> @Transactional
         return ClientResponseMapper.map(clientEntity);
     }
 
