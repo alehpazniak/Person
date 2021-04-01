@@ -26,6 +26,9 @@ public class ClientEntity {
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AddressEntity> addresses;
 
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
+
     public void addAddress(AddressEntity address) {
         address.setClient(this);
         addresses.add(address);

@@ -1,31 +1,31 @@
 package by.example.person.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class AddressEntity {
+@Entity
+@Table (name = "order")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
-    private String city;
-    private String street;
-    private String house;
-    private String flat;
+    Date date = new Date();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private ClientEntity client;
+
+    @OneToMany(mappedBy = "order")
+    private List<Product> products;
+
+    public Order() {};
 
 }
