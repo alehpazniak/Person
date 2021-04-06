@@ -19,7 +19,7 @@ public class Product {
     private String brand;
     private String product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     private Order orders;
 

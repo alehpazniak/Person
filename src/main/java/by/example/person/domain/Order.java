@@ -17,15 +17,15 @@ public class Order {
     private int id;
 
     @Column
-    Date date = new Date();
+    private Date date = new Date();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private ClientEntity client;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
 
-    public Order() {};
+    public Order() {}
 
 }
