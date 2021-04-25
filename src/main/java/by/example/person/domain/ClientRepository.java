@@ -16,11 +16,17 @@ public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
 
     List<ClientEntity> findAll();
 
-    @Query(value = "select * from client_entity ce " +
-            "left join address_entity ae on ae.client_id = ce.id " +
-            "where city = :city", nativeQuery = true)
+    @Query(value = "select * from clients c " +
+            "left join addresses a on a.client_id = c.id " +
+            "where city = :city",
+            nativeQuery = true)
     Collection<ClientEntity> findAllClientsByCity(String city);
 
-    Collection<ClientEntity> findAllClientsByAddressesCity(String city);
+    @Query(value = "select * from clients " +
+            "left join orders on orders.client_id = clients.id " +
+            "left join product on product.orders_id = orders.id " +
+            "where product.goods = :goods",
+            nativeQuery = true)
+    Collection<ClientEntity> findAllClientsByProduct(String goods);
 
 }

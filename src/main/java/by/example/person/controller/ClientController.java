@@ -2,16 +2,11 @@ package by.example.person.controller;
 
 import by.example.person.controller.protocol.ClientRequest;
 import by.example.person.controller.protocol.ClientResponse;
+import by.example.person.controller.protocol.OrderRequest;
+import by.example.person.controller.protocol.OrderResponse;
 import by.example.person.service.ClientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,7 +28,7 @@ public class ClientController {
         return clientService.findClientByName(clientName);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ClientResponse getClientById(@PathVariable(value = "id") int id) {
         return clientService.findClientById(id);
     }
@@ -41,6 +36,17 @@ public class ClientController {
     @GetMapping("/address/{city}")
     public List<ClientResponse> getAddressByCity(@PathVariable(value = "city") String city) {
         return clientService.findAddressesByCity(city);
+    }
+
+    @GetMapping("/product/{goods}")
+    public List<ClientResponse> getClientByProduct(
+            @PathVariable(value = "goods") String goods) {
+        return clientService.findClientByProduct(goods);
+    }
+
+    @GetMapping("/client/{id}/orders")
+    public List<OrderResponse> getClientOrders(@PathVariable(value = "id") int id) {
+        return clientService.getClientOrders(id);
     }
 
     @PostMapping
@@ -52,6 +58,14 @@ public class ClientController {
     public ClientResponse addAddressToClient(@PathVariable(value = "id") int id,
                                              @RequestBody ClientRequest.AddressRequest address) {
         return clientService.saveAddress(id, address);
+    }
+
+    @PostMapping("/client/{id}/order")
+    public List<OrderResponse> createOrder(
+            @PathVariable(value = "id") int id,
+            @RequestBody OrderRequest orderRequest
+    ) {
+        return clientService.addOrderToClient(id,orderRequest);
     }
 
     @PutMapping("/{id}")

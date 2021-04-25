@@ -18,7 +18,7 @@ public class OrderRequestMapper {
     }
 
     public static List<ProductEntity> mapToProducts(Collection<OrderRequest.ProductRequest> productRequests,
-                                                   OrderEntity orderEntity) {
+                                                    OrderEntity orderEntity) {
         return productRequests.stream()
                 .map(productRequest -> mapToProduct(productRequest, orderEntity))
                 .collect(Collectors.toList());

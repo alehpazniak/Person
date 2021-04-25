@@ -17,7 +17,7 @@ public class OrderRequest {
     @Data
     public static class ProductRequest {
         @NotNull
-        private Integer id;
+        private int id;     //todo with Integer -> don't work method createOrder
         private String brand;
         private String goods;
     }

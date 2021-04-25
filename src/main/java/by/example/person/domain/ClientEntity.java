@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "cleints")
+@Table(name = "clients")
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,18 +27,18 @@ public class ClientEntity {
     private String name;
     private String email;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //client -> not clients?
     private List<AddressEntity> addresses;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    private List<OrderEntity> orders;
 
     public void addAddress(AddressEntity address) {
         address.setClient(this);
         addresses.add(address);
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(OrderEntity order) {
         order.setClient(this);
         orders.add(order);
     }
