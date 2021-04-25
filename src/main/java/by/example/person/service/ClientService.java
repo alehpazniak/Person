@@ -1,8 +1,8 @@
 package by.example.person.service;
 
-import by.example.person.controller.ClientRequest;
-import by.example.person.controller.ClientResponse;
-import by.example.person.dao.ClientRepository;
+import by.example.person.controller.protocol.ClientRequest;
+import by.example.person.controller.protocol.ClientResponse;
+import by.example.person.domain.ClientRepository;
 import by.example.person.domain.ClientEntity;
 import by.example.person.exeption.ClientNotFountException;
 import by.example.person.mapper.AddressMapper;

@@ -1,6 +1,6 @@
 package by.example.person.mapper;
 
-import by.example.person.controller.OrderResponse;
+import by.example.person.controller.protocol.OrderResponse;
 import by.example.person.domain.OrderEntity;
 import by.example.person.domain.ProductEntity;
 

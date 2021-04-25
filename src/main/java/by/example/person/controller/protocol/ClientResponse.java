@@ -1,8 +1,6 @@
-package by.example.person.controller;
+package by.example.person.controller.protocol;
 
-import by.example.person.domain.AddressEntity;
 import lombok.Data;
-import lombok.Setter;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -12,22 +10,15 @@ import java.util.List;
 
 @Data
 public class ClientResponse {
-    @Size(min = 3)
     private String name;
-    @NotBlank    // не пустой
     private String email;
-    @Valid
-    @NotEmpty
     private List<AddressResponse> addresses;
 
-
     @Data
-    public static class AddressResponse{
-        @NotBlank
+    public static class AddressResponse {
         private String city;
         private String street;
         private String house;
         private String flat;
-
     }
 }

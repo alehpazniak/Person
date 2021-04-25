@@ -1,23 +1,23 @@
-package by.example.person.controller;
+package by.example.person.controller.protocol;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class OrderResponse {
+public class OrderRequest {
     private int id;
     private Date date;
     @NotEmpty
-    private List<ProductResponse> products;
+    private List<ProductRequest> products;
 
     @Data
-    public static class ProductResponse {
-        @NotBlank
-        private int id;
+    public static class ProductRequest {
+        @NotNull
+        private Integer id;
         private String brand;
         private String goods;
     }

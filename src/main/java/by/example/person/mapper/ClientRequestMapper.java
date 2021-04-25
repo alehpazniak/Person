@@ -1,6 +1,6 @@
 package by.example.person.mapper;
 
-import by.example.person.controller.ClientRequest;
+import by.example.person.controller.protocol.ClientRequest;
 import by.example.person.domain.AddressEntity;
 import by.example.person.domain.ClientEntity;
 

@@ -1,7 +1,7 @@
 package by.example.person.mapper;
 
-import by.example.person.controller.ClientRequest;
-import by.example.person.controller.ClientResponse;
+import by.example.person.controller.protocol.ClientRequest;
+import by.example.person.controller.protocol.ClientResponse;
 import by.example.person.domain.AddressEntity;
 
 import java.util.Collection;

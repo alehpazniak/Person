@@ -1,12 +1,10 @@
 package by.example.person.mapper;
 
-import by.example.person.controller.OrderRequest;
+import by.example.person.controller.protocol.OrderRequest;
 import by.example.person.domain.OrderEntity;
 import by.example.person.domain.ProductEntity;
 
-import java.time.Instant;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
