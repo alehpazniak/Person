@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "addresses")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,7 +18,6 @@ public class AddressEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
     private String city;
     private String street;
     private String house;

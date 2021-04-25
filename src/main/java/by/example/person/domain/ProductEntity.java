@@ -1,27 +1,27 @@
 package by.example.person.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table (name = "product")
 @Getter
 @Setter
-public class Product {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
     private String brand;
-    private String product;
+    private String goods;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order orders;
-
-    public Product(){};
+    @JoinColumn(name = "orders_id")
+    private OrderEntity orders;
 }

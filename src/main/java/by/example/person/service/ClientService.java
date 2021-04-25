@@ -2,12 +2,12 @@ package by.example.person.service;
 
 import by.example.person.controller.ClientRequest;
 import by.example.person.controller.ClientResponse;
+import by.example.person.controller.OrderRequest;
+import by.example.person.controller.OrderResponse;
 import by.example.person.dao.ClientRepository;
 import by.example.person.domain.ClientEntity;
 import by.example.person.exeption.ClientNotFountException;
-import by.example.person.mapper.AddressMapper;
-import by.example.person.mapper.ClientRequestMapper;
-import by.example.person.mapper.ClientResponseMapper;
+import by.example.person.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +31,20 @@ public class ClientService {
         ClientEntity clientEntity = clientRepository.save(ClientRequestMapper.map(clientRequest));
         return ClientResponseMapper.map(clientEntity);
     }
+
+    @Transactional
+    public List<OrderResponse> addOrderToClient(int id, OrderRequest orderRequest) {
+        ClientEntity clientEntity = clientRepository.findById(id);
+        clientEntity.addOrder(OrderRequestMapper.map(orderRequest));
+        return clientEntity.getOrders().stream().map(orderEntity -> OrderResponseMapper.map(orderEntity))
+                .collect(Collectors.toList());
+    }
+
+    public List<OrderResponse> getClientOrders(int id) {
+        ClientEntity clientEntity = clientRepository.findById(id);
+        return clientEntity.getOrders().stream().map(orderEntity -> OrderResponseMapper.map(orderEntity))
+                .collect(Collectors.toList());
+        }
 
     public List<ClientResponse> findClientByName(String name) {
         if (name == null) {
@@ -63,14 +77,14 @@ public class ClientService {
 
     public List<ClientResponse> findAddressesByCity(String city) {
         return clientRepository.findAllClientsByCity(city).stream()
-                .map(clientEntity -> ClientResponseMapper.map(clientEntity))
-                //              .filter(address -> address.getCity().equals(city))
+                .map(ClientResponseMapper::map)
                 .collect(Collectors.toList());
-//        return clientRepository.findAll().stream()
-//                .map(clientEntity -> ClientResponseMapper.map(clientEntity))
-//                .flatMap(clientResponse -> clientResponse.getAddresses().stream())
-//                .filter(address -> address.getCity().equals(city))
-//                .collect(Collectors.toList());
+    }
+
+    public List<ClientResponse> findClientByProduct(String goods) {
+        return clientRepository.findAllClientsByProduct(goods).stream()
+                .map(ClientResponseMapper::map)    //clientEntity -> ClientResponseMapper.map(clientEntity)
+                .collect(Collectors.toList());
     }
 
     public ClientResponse findClientById(int id) {

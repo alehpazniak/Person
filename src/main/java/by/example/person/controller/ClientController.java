@@ -1,5 +1,6 @@
 package by.example.person.controller;
 
+import by.example.person.domain.OrderEntity;
 import by.example.person.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+    private OrderEntity orderEntity;
 
     @GetMapping
     public List<ClientResponse> getClients() {
@@ -29,13 +31,33 @@ public class ClientController {
     }
 
     @GetMapping("/address/{city}")
-    public List<ClientResponse> getAddressByCity(@PathVariable(value = "city") String city) {
+    public List<ClientResponse> getAddressByCity(
+            @PathVariable(value = "city") String city) {
         return clientService.findAddressesByCity(city);
+    }
+
+    @GetMapping("/product/{goods}")
+    public List<ClientResponse> getClientByProduct(
+            @PathVariable(value = "goods") String goods) {
+        return clientService.findClientByProduct(goods);
+    }
+
+    @GetMapping("/client/{id}/orders")
+    public List<OrderResponse> getClientOrders(@PathVariable(value = "id") int id) {
+        return clientService.getClientOrders(id);
     }
 
     @PostMapping
     public ClientResponse addClient(@Valid @RequestBody ClientRequest clientRequest) {
         return clientService.saveClient(clientRequest);
+    }
+
+    @PostMapping("/client/{id}/order")
+    public List<OrderResponse> createOrder(
+            @PathVariable(value = "id") int id,
+            @RequestBody OrderRequest orderRequest
+            ) {
+        return clientService.addOrderToClient(id,orderRequest);
     }
 
     @PostMapping("/clients/{id}/address")

@@ -1,6 +1,7 @@
 package by.example.person.controller;
 
 import by.example.person.domain.AddressEntity;
+import by.example.person.domain.OrderEntity;
 import lombok.Data;
 import lombok.Setter;
 
@@ -19,6 +20,8 @@ public class ClientResponse {
     @Valid
     @NotEmpty
     private List<AddressResponse> addresses;
+
+    private List<OrderResponse> orders;
 
 
     @Data

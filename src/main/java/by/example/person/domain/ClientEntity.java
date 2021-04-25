@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "clients")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,22 +19,21 @@ public class ClientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
     private String name;
     private String email;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //client -> not clients?
     private List<AddressEntity> addresses;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+    private List<OrderEntity> orders;
 
     public void addAddress(AddressEntity address) {
         address.setClient(this);
         addresses.add(address);
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(OrderEntity order) {
         order.setClient(this);
         orders.add(order);
     }
