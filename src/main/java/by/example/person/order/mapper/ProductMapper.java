@@ -1,7 +1,7 @@
-package by.example.person.mapper;
+package by.example.person.order.mapper;
 
-import by.example.person.controller.protocol.OrderRequest;
-import by.example.person.domain.ProductEntity;
+import by.example.person.order.controller.protocol.OrderRequest;
+import by.example.person.order.domain.ProductEntity;
 
 import java.util.Collection;
 import java.util.List;

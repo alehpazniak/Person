@@ -1,8 +1,7 @@
-package by.example.person.controller.protocol;
+package by.example.person.order.controller.protocol;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package by.example.person.exeption;
+package by.example.person.client.exeption;
 
 public class ErrorResponse {
 

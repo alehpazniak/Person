@@ -1,10 +1,10 @@
-package by.example.person.controller;
+package by.example.person.client.controller;
 
-import by.example.person.controller.protocol.ClientRequest;
-import by.example.person.controller.protocol.ClientResponse;
-import by.example.person.controller.protocol.OrderRequest;
-import by.example.person.controller.protocol.OrderResponse;
-import by.example.person.service.ClientService;
+import by.example.person.client.controller.protocol.ClientRequest;
+import by.example.person.client.controller.protocol.ClientResponse;
+import by.example.person.client.service.ClientService;
+import by.example.person.order.controller.protocol.OrderRequest;
+import by.example.person.order.controller.protocol.OrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +39,7 @@ public class ClientController {
     }
 
     @GetMapping("/product/{goods}")
-    public List<ClientResponse> getClientByProduct(
-            @PathVariable(value = "goods") String goods) {
+    public List<ClientResponse> getClientByProduct(@PathVariable(value = "goods") String goods) {
         return clientService.findClientByProduct(goods);
     }
 
@@ -58,14 +57,6 @@ public class ClientController {
     public ClientResponse addAddressToClient(@PathVariable(value = "id") int id,
                                              @RequestBody ClientRequest.AddressRequest address) {
         return clientService.saveAddress(id, address);
-    }
-
-    @PostMapping("/client/{id}/order")
-    public List<OrderResponse> createOrder(
-            @PathVariable(value = "id") int id,
-            @RequestBody OrderRequest orderRequest
-    ) {
-        return clientService.addOrderToClient(id,orderRequest);
     }
 
     @PutMapping("/{id}")

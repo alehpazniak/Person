@@ -1,5 +1,6 @@
-package by.example.person.domain;
+package by.example.person.order.domain;
 
+import by.example.person.client.domain.ClientEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

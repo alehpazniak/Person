@@ -1,29 +1,33 @@
-package by.example.person.service;
+package by.example.person.client.service;
 
-import by.example.person.controller.protocol.ClientRequest;
-import by.example.person.controller.protocol.ClientResponse;
-import by.example.person.controller.protocol.OrderRequest;
-import by.example.person.controller.protocol.OrderResponse;
-import by.example.person.domain.ClientEntity;
-import by.example.person.domain.ClientRepository;
-import by.example.person.exeption.ClientNotFountException;
-import by.example.person.mapper.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import by.example.person.client.controller.protocol.ClientRequest;
+import by.example.person.client.controller.protocol.ClientResponse;
+import by.example.person.client.domain.ClientEntity;
+import by.example.person.client.domain.ClientRepository;
+import by.example.person.client.exeption.ClientNotFountException;
+import by.example.person.client.mapper.AddressMapper;
+import by.example.person.client.mapper.ClientRequestMapper;
+import by.example.person.client.mapper.ClientResponseMapper;
+import by.example.person.order.controller.protocol.OrderRequest;
+import by.example.person.order.controller.protocol.OrderResponse;
+import by.example.person.order.mapper.OrderRequestMapper;
+import by.example.person.order.mapper.OrderResponseMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class ClientService {
 
-    @Autowired
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     public List<ClientResponse> findAll() {
         return clientRepository.findAll().stream()
-                .map(clientEntity -> ClientResponseMapper.map(clientEntity))
+                .map(ClientResponseMapper::map)
                 .collect(Collectors.toList());
     }
 
@@ -31,13 +35,13 @@ public class ClientService {
     public List<OrderResponse> addOrderToClient(int id, OrderRequest orderRequest) {
         ClientEntity clientEntity = clientRepository.findById(id);
         clientEntity.addOrder(OrderRequestMapper.map(orderRequest));
-        return clientEntity.getOrders().stream().map(orderEntity -> OrderResponseMapper.map(orderEntity))
+        return clientEntity.getOrders().stream().map(OrderResponseMapper::map)
                 .collect(Collectors.toList());
     }
 
     public List<OrderResponse> getClientOrders(int id) {
         ClientEntity clientEntity = clientRepository.findById(id);
-        return clientEntity.getOrders().stream().map(orderEntity -> OrderResponseMapper.map(orderEntity))
+        return clientEntity.getOrders().stream().map(OrderResponseMapper::map)
                 .collect(Collectors.toList());
     }
 
@@ -76,7 +80,7 @@ public class ClientService {
 
     public List<ClientResponse> findAddressesByCity(String city) {
         return clientRepository.findAllClientsByCity(city).stream()
-                .map(clientEntity -> ClientResponseMapper.map(clientEntity))
+                .map(ClientResponseMapper::map)
                 .collect(Collectors.toList());
     }
 
@@ -90,8 +94,7 @@ public class ClientService {
 
     public List<ClientResponse> findClientByProduct(String goods) {
         return clientRepository.findAllClientsByProduct(goods).stream()
-                .map(ClientResponseMapper::map)    //clientEntity -> ClientResponseMapper.map(clientEntity)
+                .map(ClientResponseMapper::map)
                 .collect(Collectors.toList());
     }
-
 }

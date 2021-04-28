@@ -1,6 +1,5 @@
-package by.example.person.domain;
+package by.example.person.client.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,18 +16,19 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "product")
-public class ProductEntity {
+@Table(name = "addresses")
+public class AddressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String brand;
-    private String goods;
+    private String city;
+    private String street;
+    private String house;
+    private String flat;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orders_id")
-    private OrderEntity orders;
+    @JoinColumn(name = "client_id")
+    private ClientEntity client;
 }

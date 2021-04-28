@@ -1,4 +1,4 @@
-package by.example.person.domain;
+package by.example.person.client.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
