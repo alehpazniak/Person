@@ -1,4 +1,4 @@
-package by.example.person.controller.protocol;
+package by.example.person.order.controller.protocol;
 
 import lombok.Data;
 
@@ -17,7 +17,7 @@ public class OrderRequest {
     @Data
     public static class ProductRequest {
         @NotNull
-        private int id;     //todo with Integer -> don't work method createOrder
+        private int id;
         private String brand;
         private String goods;
     }

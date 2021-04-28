@@ -1,11 +1,7 @@
-package by.example.person.controller.protocol;
+package by.example.person.client.controller.protocol;
 
 import lombok.Data;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data

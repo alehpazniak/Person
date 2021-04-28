@@ -1,5 +1,6 @@
-package by.example.person.domain;
+package by.example.person.client.domain;
 
+import by.example.person.order.domain.OrderEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 @Getter
@@ -25,9 +27,11 @@ public class ClientEntity {
     private int id;
 
     private String name;
+
+    @Email
     private String email;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //client -> not clients?
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AddressEntity> addresses;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

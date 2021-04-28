@@ -1,19 +1,19 @@
-package by.example.person.mapper;
+package by.example.person.client.mapper;
 
-import by.example.person.controller.protocol.ClientRequest;
-import by.example.person.domain.AddressEntity;
-import by.example.person.domain.ClientEntity;
+import by.example.person.client.controller.protocol.ClientRequest;
+import by.example.person.client.domain.AddressEntity;
+import by.example.person.client.domain.ClientEntity;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ClientRequestMapper {
-    public static ClientEntity map(ClientRequest request) {
+    public static ClientEntity map(ClientRequest clientRequest) {
         ClientEntity clientEntity = new ClientEntity();
-        clientEntity.setName(request.getName());
-        clientEntity.setEmail(request.getEmail());
-        clientEntity.setAddresses(mapToAddresses(request.getAddresses(), clientEntity));
+        clientEntity.setName(clientRequest.getName());
+        clientEntity.setEmail(clientRequest.getEmail());
+        clientEntity.setAddresses(mapToAddresses(clientRequest.getAddresses(), clientEntity));
         return clientEntity;
     }
 
