@@ -1,8 +1,8 @@
-package by.example.person.mapper;
+package by.example.person.client.mapper;
 
-import by.example.person.controller.ClientRequest;
-import by.example.person.controller.ClientResponse;
-import by.example.person.domain.AddressEntity;
+import by.example.person.client.controller.protocol.ClientRequest;
+import by.example.person.client.controller.protocol.ClientResponse;
+import by.example.person.client.domain.AddressEntity;
 
 import java.util.Collection;
 import java.util.List;

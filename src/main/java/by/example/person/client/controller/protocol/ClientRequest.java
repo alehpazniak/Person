@@ -1,8 +1,9 @@
-package by.example.person.controller;
+package by.example.person.client.controller.protocol;
 
 import lombok.Data;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -12,12 +13,11 @@ import java.util.List;
 public class ClientRequest {
     @Size(min = 3)
     private String name;
-    @NotBlank    // не пустой
+    @Email
     private String email;
     @Valid
     @NotEmpty
     private List<AddressRequest> addresses;
-
 
     @Data
     public static class AddressRequest {
@@ -26,7 +26,5 @@ public class ClientRequest {
         private String street;
         private String house;
         private String flat;
-
     }
-
 }
