@@ -23,12 +23,16 @@ import java.util.List;
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    private String name;
+    private String firstName;
+    private String secondName;
+    private String fullName;
+    private int age;
+    private String phoneNumber;
     private String email;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) //client -> not clients?
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AddressEntity> addresses;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

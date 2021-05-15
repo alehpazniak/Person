@@ -1,20 +1,16 @@
 package by.example.person.client.domain;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
 
 @Repository
-public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
+public interface ClientRepository extends CrudRepository<ClientEntity, Long> {
 
-    List<ClientEntity> findClientByName(String name);
-
-    ClientEntity findById(int id);
-
-    List<ClientEntity> findAll();
+    List<ClientEntity> findClientByFirstName(String name);
 
     @Query(value = "select * from clients c " +
             "left join addresses a on a.client_id = c.id " +

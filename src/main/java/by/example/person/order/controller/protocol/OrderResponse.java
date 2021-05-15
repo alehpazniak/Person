@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class OrderResponse {
     private int id;
-    private Date date;
+    private Date createdDate;
     private List<ProductResponse> products;
 
     @Data

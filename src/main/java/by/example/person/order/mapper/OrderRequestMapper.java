@@ -12,7 +12,7 @@ public class OrderRequestMapper {
     public static OrderEntity map(OrderRequest orderRequest) {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setId(orderRequest.getId());
-        orderEntity.setDate(orderRequest.getDate());
+        orderEntity.setCreatedDate(orderRequest.getCreatedDate());
         orderEntity.setProducts(mapToProducts(orderRequest.getProducts(), orderEntity));
         return orderEntity;
     }

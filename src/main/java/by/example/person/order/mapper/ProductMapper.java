@@ -18,7 +18,7 @@ public class ProductMapper {
 
     public List<ProductEntity> mapToProducts(Collection<OrderRequest.ProductRequest> productRequests) {
         return productRequests.stream()
-                .map(this::mapToProduct) //productRequest -> mapToProduct(productRequest)
+                .map(this::mapToProduct)
                 .collect(Collectors.toList());
     }
 

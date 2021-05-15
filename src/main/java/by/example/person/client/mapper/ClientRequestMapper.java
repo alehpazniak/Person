@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class ClientRequestMapper {
     public static ClientEntity map(ClientRequest request) {
         ClientEntity clientEntity = new ClientEntity();
-        clientEntity.setName(request.getName());
+        clientEntity.setFirstName(request.getFirstName());
         clientEntity.setEmail(request.getEmail());
         clientEntity.setAddresses(mapToAddresses(request.getAddresses(), clientEntity));
         return clientEntity;

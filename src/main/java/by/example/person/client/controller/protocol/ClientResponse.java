@@ -6,7 +6,10 @@ import java.util.List;
 
 @Data
 public class ClientResponse {
-    private String name;
+    private String firstName;
+    private String lastName;
+    private int age;
+    private String phoneNumber;
     private String email;
     private List<AddressResponse> addresses;
 
