@@ -23,7 +23,6 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     private long orderNumber;
 
     @CreatedDate
