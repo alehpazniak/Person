@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <lombock.version>1.18.16</lombock.version>
+        <lombock.version>1.18.22</lombock.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <junit-jupiter-api.version>5.6.2</junit-jupiter-api.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
